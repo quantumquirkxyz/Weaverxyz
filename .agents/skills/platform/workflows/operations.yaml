@@ -1,0 +1,54 @@
+name: operations
+description: Continuous release, deployment, and monitoring flow
+entryPoint: release-management
+version: "2.0"
+
+context:
+  gateCI: "pending"
+
+states:
+  release-management:
+    type: planner
+    description: Plan the release train and CI handoff
+    transitions:
+      PLANNED: deployment
+      BLOCKED: escalate
+
+  deployment:
+    type: executor
+    description: Define build, release, and rollback seam
+    modelTier: code
+    transitions:
+      DEPLOYED: observability
+      FAILED: deployment
+      ROLLED_BACK: release-management
+    guards:
+      DEPLOYED: gateCI == "passed"
+
+  observability:
+    type: designer
+    description: Define logs, metrics, traces, alerts, SLIs, SLOs
+    transitions:
+      DEFINED: observability-monitor
+      NEEDS_UPDATE: observability
+
+  observability-monitor:
+    type: monitor
+    description: Monitor production and manage alerts
+    transitions:
+      ALERT: incident-response
+      HEALTHY: observability
+      DEGRADED: incident-response
+
+  incident-response:
+    type: responder
+    description: Run incident response: war rooms, runbooks, postmortems
+    transitions:
+      RESOLVED: observability
+      ESCALATED: escalate
+
+  escalate:
+    type: terminal
+
+  done:
+    type: terminal

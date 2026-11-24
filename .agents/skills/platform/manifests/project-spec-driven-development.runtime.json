@@ -1,0 +1,52 @@
+{
+  "skill": "project/spec-driven-development",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "556fed9383e8ef0dd1af5d4b8e0231bd835de9db3933f61a475eacd0bd3d9b39",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "worktree",
+    "maxTurns": 12,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Edit",
+        "Write"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "write-docs",
+      "write-files"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "write-docs",
+      "write-files"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [],
+    "artifactSchema": null
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

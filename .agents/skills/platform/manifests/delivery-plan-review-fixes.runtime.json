@@ -1,0 +1,51 @@
+{
+  "skill": "delivery/plan-review-fixes",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "0ae2b4cf33812bb332653d5d1e1434861c8f9208164a4a4d147664f6de709185",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "worktree",
+    "maxTurns": 6,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Bash"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "post-pr-comment"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "post-pr-comment"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [
+      "node .agents/skills/platform/check-all.mjs"
+    ],
+    "artifactSchema": null
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

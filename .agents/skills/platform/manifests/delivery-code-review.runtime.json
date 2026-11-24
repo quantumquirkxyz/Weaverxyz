@@ -1,0 +1,51 @@
+{
+  "skill": "delivery/code-review",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "be96ca44deab2491c9681a96d3ce879944e6e0db4d9482ca5260c6f5571af03e",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "worktree",
+    "maxTurns": 6,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Bash"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "post-pr-comment"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "post-pr-comment"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [
+      "node .agents/skills/platform/check-all.mjs"
+    ],
+    "artifactSchema": ".agents/skills/platform/schemas/repository-audit-schema.json"
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

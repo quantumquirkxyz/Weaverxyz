@@ -1,0 +1,61 @@
+{
+  "skill": "delivery/implement-review-fixes",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "7849b4a8b781907cf66919d3f3632b482b898fce5fe6bda2b40d4cafee5b3b63",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "worktree",
+    "maxTurns": 6,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Edit",
+        "Write",
+        "Bash",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "write-code",
+      "commit-git",
+      "push-branch",
+      "post-pr-comment"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "write-code",
+      "commit-git",
+      "push-branch",
+      "post-pr-comment"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [
+      "node .agents/skills/platform/check-all.mjs"
+    ],
+    "artifactSchema": null
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "skill": "routing/grill-with-docs",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "9d940d31fe59853af3eaad2fa45b96ca487b3f7c10358c64d4d05695f6e5313a",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "none",
+    "maxTurns": 6,
+    "modelTier": "router",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "write-docs"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "write-docs"
+    ],
+    "risk": "low",
+    "trustTier": 2
+  },
+  "verification": {
+    "commands": [],
+    "artifactSchema": ".agents/skills/platform/schemas/adr-schema.json"
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

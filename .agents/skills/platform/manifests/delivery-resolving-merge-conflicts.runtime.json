@@ -1,0 +1,57 @@
+{
+  "skill": "delivery/resolving-merge-conflicts",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "a81000913adbaa0e60f234b2711ad6523916b83ff0b15a1b5e9d13a8737f1f1c",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "worktree",
+    "maxTurns": 6,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Edit",
+        "Write",
+        "Bash"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "write-code",
+      "commit-git",
+      "continue-merge-or-rebase"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "write-code",
+      "commit-git",
+      "continue-merge-or-rebase"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [
+      "node .agents/skills/platform/check-all.mjs"
+    ],
+    "artifactSchema": null
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}

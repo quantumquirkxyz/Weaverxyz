@@ -1,0 +1,49 @@
+{
+  "skill": "project/to-spec",
+  "version": 1,
+  "generatedFrom": "frontmatter",
+  "frontmatterHash": "2c4a5db22b930ad21bb0f50eb17d1f2cbe9b894ed7f9213ddc66e8ecadef2f07",
+  "role": "workflow",
+  "router": {
+    "positive": [],
+    "negative": [],
+    "requiredSignals": []
+  },
+  "execution": {
+    "defaultAgent": "general",
+    "isolation": "none",
+    "maxTurns": 6,
+    "modelTier": "reasoning",
+    "tools": {
+      "allow": [
+        "Read",
+        "Grep",
+        "Glob",
+        "Bash"
+      ],
+      "deny": []
+    }
+  },
+  "guardrails": {
+    "sideEffects": [
+      "create-issue"
+    ],
+    "approvalRequired": true,
+    "approvalFor": [
+      "create-issue"
+    ],
+    "risk": "medium",
+    "trustTier": 3
+  },
+  "verification": {
+    "commands": [],
+    "artifactSchema": ".agents/skills/platform/schemas/spec-schema.json"
+  },
+  "observability": {
+    "traceEvents": [
+      "skill.route",
+      "skill.execute",
+      "skill.verify"
+    ]
+  }
+}
