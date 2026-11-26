@@ -47,7 +47,7 @@ public sealed class DependencyBoundaryTests
 
     [Fact]
     public void Deliberate_cycle_is_rejected()
-        => Assert.False(IsValidGraph(new Dictionary<string, string[]>
+        => Assert.True(HasCycle(new Dictionary<string, string[]>
         {
             ["Core"] = ["..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
             ["Data"] = ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
