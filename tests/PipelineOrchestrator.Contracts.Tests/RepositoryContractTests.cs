@@ -1,5 +1,5 @@
 using PipelineOrchestrator.Core.Contracts;
-using PipelineOrchestrator.Core.Data;
+using PipelineOrchestrator.Data;
 using PipelineOrchestrator.Core.Models;
 using Xunit;
 

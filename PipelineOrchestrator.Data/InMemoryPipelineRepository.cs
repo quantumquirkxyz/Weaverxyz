@@ -1,7 +1,7 @@
 using PipelineOrchestrator.Core.Contracts;
 using PipelineOrchestrator.Core.Models;
 
-namespace PipelineOrchestrator.Core.Data;
+namespace PipelineOrchestrator.Data;
 
 public sealed class InMemoryPipelineRepository : IPipelineRepository
 {

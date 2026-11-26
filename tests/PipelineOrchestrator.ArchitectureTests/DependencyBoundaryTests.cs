@@ -17,9 +17,10 @@ public sealed class DependencyBoundaryTests
             ProjectReferences("PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj"));
 
     [Fact]
-    public void Ui_references_only_Core()
+    public void Ui_references_Core_and_Data_for_composition()
         => Assert.Equal(
-            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
+            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj",
+             "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
             ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj"));
 
     [Fact]
@@ -32,7 +33,6 @@ public sealed class DependencyBoundaryTests
             ["UI"] = ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj")
         };
 
-        Assert.DoesNotContain(references["UI"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.DoesNotContain(references["Core"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.DoesNotContain(references["Data"], reference => reference.Contains("PipelineOrchestrator.UI"));
         Assert.False(HasCycle(references));

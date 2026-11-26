@@ -7,5 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\PipelineOrchestrator.Core\PipelineOrchestrator.Core.csproj" />
+    <ProjectReference Include="..\PipelineOrchestrator.Data\PipelineOrchestrator.Data.csproj" />
   </ItemGroup>
 </Project>
