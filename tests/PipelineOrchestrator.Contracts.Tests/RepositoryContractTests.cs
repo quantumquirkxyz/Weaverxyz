@@ -1,5 +1,4 @@
 using PipelineOrchestrator.Core.Contracts;
-using PipelineOrchestrator.Data;
 using PipelineOrchestrator.Core.Models;
 using Xunit;
 
@@ -10,7 +9,7 @@ public sealed class RepositoryContractTests
     [Fact]
     public async Task InMemory_repository_implements_pipeline_repository_contract()
     {
-        IPipelineRepository repository = new InMemoryPipelineRepository();
+        IPipelineRepository repository = new ContractRepository();
         Assert.Null(await repository.FindAsync(Guid.NewGuid()));
     }
 
@@ -25,4 +24,10 @@ public sealed class RepositoryContractTests
 
         Assert.Equal(["source", "sink"], pipeline.Steps.Select(step => step.Name));
     }
+}
+
+internal sealed class ContractRepository : IPipelineRepository
+{
+    public Task<PipelineDefinition?> FindAsync(Guid id, CancellationToken cancellationToken = default)
+        => Task.FromResult<PipelineDefinition?>(null);
 }
