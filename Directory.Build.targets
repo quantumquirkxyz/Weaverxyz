@@ -3,4 +3,15 @@
     <Error Condition="'$(MSBuildProjectName)' == 'PipelineOrchestrator.Core' and @(ProjectReference->Count()) != 0"
            Text="Core must not reference another project." />
   </Target>
+
+  <Target Name="CopyDataCompositionAssembly"
+          BeforeTargets="Build"
+          Condition="'$(MSBuildProjectName)' == 'PipelineOrchestrator.UI'">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj"
+             Targets="Build"
+             Properties="Configuration=$(Configuration)" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)PipelineOrchestrator.Data/bin/$(Configuration)/net8.0/PipelineOrchestrator.Data.dll"
+          DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
 </Project>
