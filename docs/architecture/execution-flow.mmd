@@ -1,0 +1,12 @@
+flowchart TD
+    START[User launches Pipeline] --> LOAD[Load definition from PostgreSQL]
+    LOAD --> BUILD[PipelineBuilder creates StepCommands]
+    BUILD --> RUN[PipelineRunner executes in order]
+    RUN --> STEP[StepExecutor.Run]
+    STEP --> OK{Step succeeded?}
+    OK -->|Yes| NEXT{More steps?}
+    NEXT -->|Yes| STEP
+    NEXT -->|No| DONE[Persist successful ExecutionRun]
+    OK -->|No| ROLLBACK[ErrorHandler: Rollback completed commands LIFO]
+    ROLLBACK --> FAIL[Persist failure and logs]
+    STEP -. ProgressReporter events .-> UI[Windows Forms monitor]

@@ -1,0 +1,13 @@
+flowchart TD
+    UI[PipelineOrchestrator.UI\nWindows Forms Designer]
+    CORE[PipelineOrchestrator.Core\nDomain + Patterns]
+    EXEC[Execution Engine\nPipelineRunner + StepExecutor]
+    DATA[PipelineOrchestrator.Data\nRepositories + Npgsql]
+    DB[(PostgreSQL\nJSONB + migrations)]
+    AGENT[External Agent REST API]
+    UI --> CORE
+    CORE --> EXEC
+    EXEC --> DATA
+    DATA --> DB
+    EXEC --> AGENT
+    EXEC -. ProgressReporter .-> UI

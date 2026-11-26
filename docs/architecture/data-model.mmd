@@ -1,0 +1,11 @@
+erDiagram
+    PIPELINES ||--o{ STEPS : contains
+    PIPELINES ||--o{ EXECUTION_RUNS : executes
+    STEPS ||--|| STEP_CONFIGS : configures
+    STEPS ||--o{ STEP_LOGS : logs
+    EXECUTION_RUNS ||--o{ STEP_LOGS : contains
+    PIPELINES { uuid id PK; varchar name; text description; timestamp created_at }
+    STEPS { uuid id PK; uuid pipeline_id FK; int step_order; varchar step_type; varchar name }
+    STEP_CONFIGS { uuid id PK; uuid step_id FK; jsonb config; int version }
+    EXECUTION_RUNS { uuid id PK; uuid pipeline_id FK; varchar status; timestamp started_at; timestamp finished_at; int duration_ms }
+    STEP_LOGS { uuid id PK; uuid run_id FK; uuid step_id FK; varchar status; jsonb input_snapshot; jsonb output_snapshot; int duration_ms }
