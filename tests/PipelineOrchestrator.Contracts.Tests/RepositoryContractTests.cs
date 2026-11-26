@@ -1,6 +1,7 @@
 using PipelineOrchestrator.Core.Contracts;
 using PipelineOrchestrator.Core.Data;
 using PipelineOrchestrator.Core.Models;
+using Xunit;
 
 namespace PipelineOrchestrator.Contracts.Tests;
 
