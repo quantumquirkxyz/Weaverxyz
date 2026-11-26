@@ -1,0 +1,54 @@
+{
+  "artifactType": "ReleaseCandidateArtifact",
+  "schemaVersion": "1.0",
+  "operationId": "ticket-weaverxyz-m01-t01-v1",
+  "owner": "quantumquirkxyz",
+  "source": {
+    "issue": 61,
+    "pullRequest": 204,
+    "fixedPoint": "960b64ce865ff030ce50eb2030dac76cf693128c",
+    "base": "4419e2618d5436a710700c5d316095db8c239cd1"
+  },
+  "sbom": {
+    "format": "project-manifest",
+    "components": [
+      { "name": "PipelineOrchestrator.Core", "version": "0.1.0", "source": "local-project" },
+      { "name": "PipelineOrchestrator.Data", "version": "0.1.0", "source": "local-project" },
+      { "name": "PipelineOrchestrator.UI", "version": "0.1.0", "source": "local-project" },
+      { "name": "Microsoft.NET.Test.Sdk", "version": "17.11.1", "source": "NuGet" },
+      { "name": "xunit", "version": "2.9.2", "source": "NuGet" },
+      { "name": "xunit.runner.visualstudio", "version": "2.8.2", "source": "NuGet" }
+    ]
+  },
+  "vex": {
+    "status": "no-known-vulnerabilities",
+    "scope": "declared direct dependencies",
+    "evidence": "No production package dependencies are declared; test dependencies are pinned in the architecture test project."
+  },
+  "provenance": {
+    "repository": "https://github.com/quantumquirkxyz/Weaverxyz",
+    "branch": "feat/issue-61-solution-and-architecture-gates",
+    "commit": "960b64ce865ff030ce50eb2030dac76cf693128c",
+    "build": "dotnet 8.0.428; Release; deterministic=true",
+    "attestation": "git commit and passing local build/test evidence"
+  },
+  "verification": {
+    "build": "passed: 0 warnings, 0 errors",
+    "tests": "passed: 6 passed, 0 failed, 0 skipped",
+    "review": "scoped Standards and Spec findings resolved in PR comments"
+  },
+  "rollback": {
+    "strategy": "revert the merge commit",
+    "verification": "re-run dotnet build PipelineOrchestrator.sln -c Release and dotnet test PipelineOrchestrator.sln -c Release",
+    "owner": "quantumquirkxyz"
+  },
+  "canary": {
+    "status": "not-applicable",
+    "reason": "Windows desktop foundation; no deployed service or progressive rollout target exists in this ticket."
+  },
+  "approval": {
+    "approvedBy": "user",
+    "scope": "merge, project completion update, linked issue closure"
+  },
+  "nextConsumer": "release-management"
+}
