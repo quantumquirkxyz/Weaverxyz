@@ -26,6 +26,19 @@ jobs:
   build-and-test:
     needs: baseline
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: weaverxyz
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d weaverxyz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     strategy:
       matrix:
         configuration: [Debug, Release]
@@ -40,6 +53,8 @@ jobs:
       - name: Build (${{ matrix.configuration }})
         run: dotnet build PipelineOrchestrator.sln --configuration ${{ matrix.configuration }} --nologo
       - name: Test (${{ matrix.configuration }})
+        env:
+          WEAVERXYZ_POSTGRES_CONNECTION_STRING: Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=weaverxyz
         run: |
           dotnet test PipelineOrchestrator.sln \
             --configuration ${{ matrix.configuration }} \
