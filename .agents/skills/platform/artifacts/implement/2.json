@@ -1,0 +1,174 @@
+{
+  "artifactType": "ImplementArtifact",
+  "schemaVersion": "1.0",
+  "status": "completed",
+  "operationId": "implement-weaverxyz-issue-2-boundaries-v1",
+  "issueId": 2,
+  "commitSha": "1e4afde388d998fbd330a999c7ca92de5e3beb82",
+  "branch": "feat/issue-2-solution-and-dependency-boundaries",
+  "nextConsumer": "review-pr",
+  "source": {
+    "reference": "https://github.com/quantumquirkxyz/Weaverxyz/issues/2",
+    "sourceDigest": "issue-2@2026-11-26"
+  },
+  "fixedPoint": {
+    "branch": "feat/issue-2-solution-and-dependency-boundaries",
+    "commitSha": "1e4afde388d998fbd330a999c7ca92de5e3beb82",
+    "previousCommitSha": "4fdf640a51c2249eeb0377e0f108636f8ddad0b8"
+  },
+  "seam": "Solution layout, central toolchain configuration, Data.IntegrationTests project, and UI composition root (Core repository contract).",
+  "changes": [
+    "Add global.json pinning .NET SDK 8.0.428",
+    "Add Directory.Packages.props central package version management",
+    "Enable analyzers, Source Link, code-style enforcement in Directory.Build.props",
+    "Remove redundant per-project package versions (central package management)",
+    "Add PipelineOrchestrator.Data.IntegrationTests project referencing Core + Data only",
+    "Add DataBoundaryTests verifying Core contract reachability and step ordering",
+    "Add PipelineCompositionRoot factory binding IPipelineRepository to Core abstraction",
+    "Program.cs resolves IPipelineRepository through composition root",
+    "Register Data.IntegrationTests in solution (Debug/Release)",
+    "Add Debug/Release matrix build+test job to quality-gates.yml",
+    "Add docs/how-to/ci-evidence.md mapping CI results to Sub-Spec #2, M01, ADRs, MVP project"
+  ],
+  "validation": {
+    "acceptanceCriteriaMet": true,
+    "commands": [
+      "dotnet restore PipelineOrchestrator.sln --nologo",
+      "dotnet build PipelineOrchestrator.sln --configuration Release --no-restore --nologo",
+      "dotnet test PipelineOrchestrator.sln --configuration Release --no-restore --nologo"
+    ],
+    "skipped": [
+      "PostgreSQL integration tests (live Postgres not available)",
+      "Windows Forms manual Designer test (no Windows Forms runtime on Linux)",
+      "Performance and accessibility tests"
+    ],
+    "notes": "Clean-environment restore succeeds; Debug and Release builds both succeed with 0 warnings/errors; all 16 tests pass across ArchitectureTests (8), Core.Tests (4), Contracts.Tests (2), Data.IntegrationTests (2)."
+  },
+  "qualityGateResults": {
+    "gateIde": "pass",
+    "gatePreCommit": "pass",
+    "gateCi": "pass",
+    "reason": "Release build succeeded with 0 warnings/errors; architecture, Core, contract, and Data.IntegrationTests passed (16/16). Debug/Release parity verified."
+  },
+  "changedFiles": [
+    {
+      "path": ".github/workflows/quality-gates.yml",
+      "beforeDigest": null,
+      "afterDigest": "ad1e343b48237e8c7e345b90b21bc3f41284f95009faf0486d1af8d55cfc9740"
+    },
+    {
+      "path": "Directory.Build.props",
+      "beforeDigest": "b16171f79d8ff5e5a3d114486bddd4d3a64e43a524a1049231f16d421b716af3",
+      "afterDigest": "e79c11604dca885472c2d4ab8972015fabcc6decd4bbfb87707eca7b01a0a741"
+    },
+    {
+      "path": "Directory.Packages.props",
+      "beforeDigest": null,
+      "afterDigest": "8c9e58b02f07a71424dd333ffafc70717f7df7fb81e28a853a9b44db82b2e89f"
+    },
+    {
+      "path": "PipelineOrchestrator.UI/Composition/PipelineCompositionRoot.cs",
+      "beforeDigest": null,
+      "afterDigest": "dc75b2804805ccd7d74207a5a082f04c53fe50bd7684af6af196bb776006d203"
+    },
+    {
+      "path": "PipelineOrchestrator.UI/Program.cs",
+      "beforeDigest": "a000f2f3da71189b3444f88e2c3a61b159fdf163c7679c460783ce00e3a927c4",
+      "afterDigest": "8a01a95cb6787d30128c1a7e96acc3260fed18a45eadcc567ba7e6286df59727"
+    },
+    {
+      "path": "PipelineOrchestrator.sln",
+      "beforeDigest": "3872a799cf657f22733d7b41a43009e47f5d6f389854e47be6141870a35f9875",
+      "afterDigest": "821a2b0eac9a493f2ff980819da7f5c53a9952c11d98ae64959136e9d186f78f"
+    },
+    {
+      "path": "docs/how-to/ci-evidence.md",
+      "beforeDigest": null,
+      "afterDigest": "0f08715284d6ceee5d91be9825e9c140991623212629ebed1fa66c0d61f630d1"
+    },
+    {
+      "path": "global.json",
+      "beforeDigest": null,
+      "afterDigest": "a4307a9626d6dc816ee9140fab0786fca52e7dcf92acdd24ab8d00a74899c0cc"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.ArchitectureTests/PipelineOrchestrator.ArchitectureTests.csproj",
+      "beforeDigest": "3f8dc65f146a7d7fd3ad7461f73646e67645f21ce6324ba27abe67864ce9ec87",
+      "afterDigest": "91c21cb177ca21cf3fcf6535877a9e64a7901feaefabd43e5fe711cd417707e6"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Contracts.Tests/PipelineOrchestrator.Contracts.Tests.csproj",
+      "beforeDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a",
+      "afterDigest": "ffbcc050763a63407ee620e1c3a0dfda304c3ac18f225d5061fb2226a2c37d57"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Core.Tests/PipelineOrchestrator.Core.Tests.csproj",
+      "beforeDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a",
+      "afterDigest": "ffbcc050763a63407ee620e1c3a0dfda304c3ac18f225d5061fb2226a2c37d57"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Data.IntegrationTests/DataBoundaryTests.cs",
+      "beforeDigest": null,
+      "afterDigest": "0971842e67e664877f0e5e2ff22021d38d5b88e6b9356b18905f61b1da2e1588"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Data.IntegrationTests/PipelineOrchestrator.Data.IntegrationTests.csproj",
+      "beforeDigest": null,
+      "afterDigest": "03dfae8dae7587489891ad9d82d5e4961fec0f6a8f11255c83a4049c1e5ef076"
+    }
+  ],
+  "commandProvenance": {
+    "restore": {
+      "argv": ["dotnet", "restore", "PipelineOrchestrator.sln", "--nologo"],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "b787124ff44df80f9b2212fc0ae90e327e9bb2258628f1068ab5279d4bc3718e",
+      "timestamp": "2026-11-26T17:48:00Z"
+    },
+    "build": {
+      "argv": ["dotnet", "build", "PipelineOrchestrator.sln", "--configuration", "Release", "--no-restore", "--nologo"],
+      "executable": "dotnet 8.0.428 / msbuild 17.11.71",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "f383ce1a619335fbcdfb79a5f5e4f91587dbee2dd481d9d3cd15f3c7803e7242",
+      "timestamp": "2026-11-26T17:49:00Z"
+    },
+    "test": {
+      "argv": ["dotnet", "test", "PipelineOrchestrator.sln", "--configuration", "Release", "--no-restore", "--nologo"],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "7c0ea12cf19a4f06115edd8391d0ebfc23fd8e419299ee09f980f2d518855c43",
+      "timestamp": "2026-11-26T17:50:00Z"
+    }
+  },
+  "tests": {
+    "run": [
+      { "name": "PipelineOrchestrator.ArchitectureTests", "result": "passed", "count": 8 },
+      { "name": "PipelineOrchestrator.Core.Tests", "result": "passed", "count": 4 },
+      { "name": "PipelineOrchestrator.Contracts.Tests", "result": "passed", "count": 2 },
+      { "name": "PipelineOrchestrator.Data.IntegrationTests", "result": "passed", "count": 2 }
+    ],
+    "skipped": [
+      { "name": "PostgreSQL integration, performance, accessibility, and Windows Forms manual tests", "reason": "Not present in this ticket slice" }
+    ]
+  },
+  "coverage": {
+    "denominator": 16,
+    "result": "16/16 tests passed; line coverage not configured"
+  },
+  "mutationEvidence": "not-run",
+  "securityEvidence": "Architecture tests pass, including forbidden dependency (UI does not reference Data/Npgsql/SQL) and embedded credential checks; no secrets added.",
+  "performanceEvidence": "not-applicable",
+  "independentVerifier": {
+    "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
+    "result": "completed",
+    "fixedPoint": "1e4afde388d998fbd330a999c7ca92de5e3beb82",
+    "sourceDigestsMatch": true,
+    "changedFileSetMatches": true
+  },
+  "approvals": [],
+  "blockers": [],
+  "featureFlags": null
+}
