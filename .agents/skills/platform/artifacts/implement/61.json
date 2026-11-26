@@ -10,8 +10,8 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-61-solution-and-architecture-gates",
-    "commitSha": "6df01b6e379766a7fe389c0e021685896276356f",
-    "previousCommitSha": "a6410e4"
+    "commitSha": "2ae83078ce89c6f2f38d777c86f9f7f48b03c07f",
+    "previousCommitSha": "6df01b6e379766a7fe389c0e021685896276356f"
   },
   "seam": "Solution/project graph, composition root, deterministic MSBuild settings, and static architecture/security tests. Single seam: Core domain layer with Data → Core and UI → Core + Data dependency direction.",
   "changedFiles": [
@@ -29,8 +29,8 @@
     { "path": "PipelineOrchestrator.UI/MainForm.cs", "beforeDigest": null, "afterDigest": "8cc31f72cadbd6391cf26c705b85dfa15d38061f2ad3fe8f6349338a40e85141" },
     { "path": "tests/PipelineOrchestrator.ArchitectureTests/PipelineOrchestrator.ArchitectureTests.csproj", "beforeDigest": null, "afterDigest": "3f8dc65f146a7d7fd3ad7461f73646e67645f21ce6324ba27abe67864ce9ec87" },
     { "path": "tests/PipelineOrchestrator.ArchitectureTests/DependencyBoundaryTests.cs", "beforeDigest": null, "afterDigest": "be9a60a9f295243423c661371723cccfaaab0e87409047c20a31403cf1cec01d" },
-    { "path": ".agents/skills/platform/artifacts/implement/61.json", "beforeDigest": "0aaf568669a3bf536e1aaf15558821ab72934ec0169e507772c38b1d925469e7", "afterDigest": null },
-    { "path": ".agents/skills/platform/artifacts/implement/61.md", "beforeDigest": "7a84c1ca4f667bfdf0dd329bb19a7e7755d47993129de852e286fe1300ec5f7d", "afterDigest": null }
+    { "path": "PipelineOrchestrator.Core/Data/InMemoryPipelineRepository.cs", "beforeDigest": null, "afterDigest": "e729123fe7964791b99df8dab3203eb36932092f2b1d0d5a40416af9258f1ef0" },
+    { "path": "PipelineOrchestrator.UI/MainForm.Designer.cs", "beforeDigest": null, "afterDigest": "d3655680792b76a219f150fbcd88faf79508a511f45df0b61c25fe412f1939fe" }
   ],
   "commandProvenance": {
     "restore": { "argv": ["dotnet", "restore", "PipelineOrchestrator.sln"], "executable": "dotnet 8.0.428", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 0, "timestamp": "2026-11-26T00:00:00Z" },
@@ -59,7 +59,7 @@
   "independentVerifier": {
     "identity": "OpenCode static verifier + dotnet test execution",
     "result": "completed",
-    "fixedPoint": "6df01b6e379766a7fe389c0e021685896276356f",
+    "fixedPoint": "2ae83078ce89c6f2f38d777c86f9f7f48b03c07f",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
