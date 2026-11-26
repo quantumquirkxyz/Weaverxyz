@@ -17,10 +17,34 @@ public sealed class DependencyBoundaryTests
             ProjectReferences("PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj"));
 
     [Fact]
-    public void Ui_references_only_Core_and_Data()
+    public void Ui_references_only_Core()
         => Assert.Equal(
-            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj", "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
+            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
             ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj"));
+
+    [Fact]
+    public void Project_graph_has_no_cycles_or_forbidden_ui_data_edge()
+    {
+        var references = new Dictionary<string, string[]>
+        {
+            ["Core"] = ProjectReferences("PipelineOrchestrator.Core/PipelineOrchestrator.Core.csproj"),
+            ["Data"] = ProjectReferences("PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj"),
+            ["UI"] = ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj")
+        };
+
+        Assert.DoesNotContain(references["UI"], reference => reference.Contains("PipelineOrchestrator.Data"));
+        Assert.DoesNotContain(references["Core"], reference => reference.Contains("PipelineOrchestrator.Data"));
+        Assert.DoesNotContain(references["Data"], reference => reference.Contains("PipelineOrchestrator.UI"));
+    }
+
+    [Fact]
+    public void Build_properties_are_deterministic_and_nullable()
+    {
+        var props = XDocument.Load(Path.Combine(Root, "Directory.Build.props")).ToString();
+        Assert.Contains("<Deterministic>true</Deterministic>", props);
+        Assert.Contains("<Nullable>enable</Nullable>", props);
+        Assert.Contains("<LangVersion>12.0</LangVersion>", props);
+    }
 
     [Fact]
     public void Source_contains_no_embedded_credentials()

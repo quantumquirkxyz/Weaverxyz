@@ -1,3 +1,5 @@
+using PipelineOrchestrator.Core.Models;
+
 namespace PipelineOrchestrator.Core.Contracts;
 
 public interface IPipelineRepository
