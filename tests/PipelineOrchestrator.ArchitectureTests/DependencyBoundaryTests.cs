@@ -17,10 +17,9 @@ public sealed class DependencyBoundaryTests
             ProjectReferences("PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj"));
 
     [Fact]
-    public void Ui_references_Core_and_Data_for_composition()
+    public void Ui_references_only_Core()
         => Assert.Equal(
-            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj",
-             "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
+            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
             ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj"));
 
     [Fact]
@@ -35,8 +34,25 @@ public sealed class DependencyBoundaryTests
 
         Assert.DoesNotContain(references["Core"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.DoesNotContain(references["Data"], reference => reference.Contains("PipelineOrchestrator.UI"));
+        Assert.DoesNotContain(references["UI"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.False(HasCycle(references));
     }
+
+    [Fact]
+    public void Deliberate_forbidden_reference_is_rejected()
+        => Assert.Contains(
+            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj",
+             "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
+            reference => reference.Contains("PipelineOrchestrator.Data"));
+
+    [Fact]
+    public void Deliberate_cycle_is_rejected()
+        => Assert.True(HasCycle(new Dictionary<string, string[]>
+        {
+            ["Core"] = ["..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
+            ["Data"] = ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
+            ["UI"] = []
+        }));
 
     [Fact]
     public void Build_properties_are_deterministic_and_nullable()
