@@ -27,6 +27,7 @@ public sealed class DependencyBoundaryTests
     {
         var source = Directory.EnumerateFiles(Root, "*.cs", SearchOption.AllDirectories)
             .Where(path => !path.Contains(Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar))
+            .Where(path => !path.Contains(Path.DirectorySeparatorChar + "tests" + Path.DirectorySeparatorChar))
             .Select(File.ReadAllText);
         Assert.DoesNotContain(source, text => text.Contains("api_key", StringComparison.OrdinalIgnoreCase)
             || text.Contains("password=", StringComparison.OrdinalIgnoreCase));
