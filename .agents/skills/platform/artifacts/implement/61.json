@@ -1,0 +1,60 @@
+{
+  "artifactType": "ImplementArtifact",
+  "schemaVersion": "1.0",
+  "status": "blocked",
+  "operationId": "ticket-weaverxyz-m01-t01-v1",
+  "issueId": 61,
+  "source": {
+    "reference": "https://github.com/quantumquirkxyz/Weaverxyz/issues/61",
+    "sourceDigest": "issue-61@2026-11-26"
+  },
+  "fixedPoint": {
+    "branch": "feat/issue-61-solution-and-architecture-gates",
+    "commitSha": "fbf56bd86ef6e3395818026fc17f5e55338fb04b"
+  },
+  "seam": "Solution/project graph, composition root, deterministic MSBuild settings, and static architecture/security tests.",
+  "changedFiles": [
+    "Directory.Build.props",
+    "Directory.Build.targets",
+    "PipelineOrchestrator.sln",
+    "PipelineOrchestrator.Core/PipelineOrchestrator.Core.csproj",
+    "PipelineOrchestrator.Core/Contracts/IPipelineRepository.cs",
+    "PipelineOrchestrator.Core/Models/PipelineDefinition.cs",
+    "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs",
+    "PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj",
+    "PipelineOrchestrator.Data/InMemoryPipelineRepository.cs",
+    "PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj",
+    "PipelineOrchestrator.UI/Program.cs",
+    "PipelineOrchestrator.UI/MainForm.cs",
+    "tests/PipelineOrchestrator.ArchitectureTests/PipelineOrchestrator.ArchitectureTests.csproj",
+    "tests/PipelineOrchestrator.ArchitectureTests/DependencyBoundaryTests.cs"
+  ],
+  "qualityGateResults": {
+    "staticDiffCheck": "passed",
+    "gateIDE": "not-run",
+    "gatePreCommit": "not-run",
+    "gateCI": "blocked",
+    "reason": "The environment has no dotnet, msbuild, mono, or csc executable; restore/build/test could not be executed."
+  },
+  "tests": {
+    "run": [],
+    "skipped": [
+      {
+        "name": "ArchitectureTests",
+        "reason": "No .NET toolchain is installed in the execution environment."
+      }
+    ]
+  },
+  "coverage": { "denominator": null, "result": null },
+  "mutationEvidence": "not-run",
+  "securityEvidence": "Static source test added; execution blocked by missing .NET toolchain.",
+  "performanceEvidence": "not-applicable",
+  "independentVerifier": {
+    "identity": "OpenCode static verifier",
+    "result": "blocked",
+    "reason": "Independent build/test verification requires the unavailable .NET toolchain."
+  },
+  "approvals": [],
+  "blockers": ["Install .NET 8 SDK and restore NuGet dependencies, then rerun restore/build/test and gate-ci."],
+  "nextConsumer": "publish-open-pr"
+}
