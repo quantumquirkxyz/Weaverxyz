@@ -10,8 +10,8 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-107-establish-contracts-test-fixtures",
-    "commitSha": "3fd9ae4",
-    "previousCommitSha": "25c36d9"
+    "commitSha": "dd8b838",
+    "previousCommitSha": "3fd9ae4"
   },
   "seam": "UI-to-Core composition boundary, Core repository contract fixtures, and static architecture negative fixtures.",
   "changedFiles": [
@@ -140,7 +140,7 @@
   "independentVerifier": {
     "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
     "result": "completed",
-    "fixedPoint": "3fd9ae4",
+    "fixedPoint": "dd8b838",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
