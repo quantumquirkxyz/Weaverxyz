@@ -10,8 +10,8 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-107-establish-contracts-test-fixtures",
-    "commitSha": "ed8f7ba",
-    "previousCommitSha": "75b8c4c"
+    "commitSha": "1b26f81",
+    "previousCommitSha": "890c1bc"
   },
   "seam": "Explicit Core repository composition plus deterministic Core and contract test fixtures.",
   "changedFiles": [
@@ -32,7 +32,7 @@
     },
     {
       "path": "PipelineOrchestrator.Data/InMemoryPipelineRepository.cs",
-      "beforeDigest": null,
+      "beforeDigest": "407a0be4de162de605846a96c7b677e7838036a40929f1589baf2b70e59d35a3",
       "afterDigest": "2a47d2ab01aa09551b3411d7db0e5bb13cc808d26f517f86111249c35b764a16"
     },
     {
@@ -63,7 +63,7 @@
     {
       "path": "tests/PipelineOrchestrator.Contracts.Tests/RepositoryContractTests.cs",
       "beforeDigest": null,
-      "afterDigest": "4f1b25d18d810222372f1bcc4eb7d66a042c6c3cac24d3574e91f18dc954c6e4"
+      "afterDigest": "01cf98e1da7bd520a6e53380bfbb6188ef77c57e58672a1c397d1cb8a3ced21a"
     }
   ],
   "commandProvenance": {
@@ -106,7 +106,7 @@
       "executable": "dotnet 8.0.428",
       "cwd": "/home/quantumquirkxyz/Weaverxyz",
       "exitStatus": 0,
-      "outputDigest": "a0a196ad67592170ac0d571bd6961571065c20315ffe8b01d085cecfa6683b05"
+      "outputDigest": "fc6699d78e54e95bcca159bcb5dd1b90bff764af565d945b4a28cc9454564e06"
     }
   },
   "qualityGateResults": {
@@ -131,6 +131,11 @@
         "name": "PipelineOrchestrator.Contracts.Tests",
         "result": "passed",
         "count": 2
+      },
+      {
+        "name": "PipelineOrchestrator.Data.IntegrationTests",
+        "result": "passed",
+        "count": 3
       }
     ],
     "skipped": [
@@ -141,8 +146,8 @@
     ]
   },
   "coverage": {
-    "denominator": 12,
-    "result": "12/12 tests passed; line coverage not configured"
+    "denominator": 15,
+    "result": "15/15 tests passed; line coverage not configured"
   },
   "mutationEvidence": "not-run",
   "securityEvidence": "Architecture tests pass, including forbidden dependency and embedded credential checks; no secrets added.",
@@ -150,7 +155,7 @@
   "independentVerifier": {
     "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
     "result": "completed",
-    "fixedPoint": "ed8f7ba",
+    "fixedPoint": "1b26f81",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
