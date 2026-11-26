@@ -1,0 +1,6 @@
+<Project>
+  <Target Name="ValidateProjectReferences" BeforeTargets="Build">
+    <Error Condition="'$(MSBuildProjectName)' == 'PipelineOrchestrator.Core' and @(ProjectReference->Count()) != 0"
+           Text="Core must not reference another project." />
+  </Target>
+</Project>

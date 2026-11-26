@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><RootNamespace>PipelineOrchestrator.Data</RootNamespace><AssemblyName>PipelineOrchestrator.Data</AssemblyName></PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\PipelineOrchestrator.Core\PipelineOrchestrator.Core.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RootNamespace>PipelineOrchestrator.UI</RootNamespace><AssemblyName>PipelineOrchestrator.UI</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PipelineOrchestrator.Core\PipelineOrchestrator.Core.csproj" />
+    <ProjectReference Include="..\PipelineOrchestrator.Data\PipelineOrchestrator.Data.csproj" />
+  </ItemGroup>
+</Project>

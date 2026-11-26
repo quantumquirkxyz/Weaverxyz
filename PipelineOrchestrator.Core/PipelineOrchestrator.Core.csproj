@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><RootNamespace>PipelineOrchestrator.Core</RootNamespace><AssemblyName>PipelineOrchestrator.Core</AssemblyName></PropertyGroup>
+</Project>
