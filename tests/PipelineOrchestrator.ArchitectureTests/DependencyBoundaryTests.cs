@@ -32,27 +32,33 @@ public sealed class DependencyBoundaryTests
             ["UI"] = ProjectReferences("PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj")
         };
 
-        Assert.DoesNotContain(references["Core"], reference => reference.Contains("PipelineOrchestrator.Data"));
-        Assert.DoesNotContain(references["Data"], reference => reference.Contains("PipelineOrchestrator.UI"));
-        Assert.DoesNotContain(references["UI"], reference => reference.Contains("PipelineOrchestrator.Data"));
-        Assert.False(HasCycle(references));
+        Assert.True(IsValidGraph(references));
     }
 
     [Fact]
     public void Deliberate_forbidden_reference_is_rejected()
-        => Assert.Contains(
-            ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj",
-             "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
-            reference => reference.Contains("PipelineOrchestrator.Data"));
+        => Assert.False(IsValidGraph(new Dictionary<string, string[]>
+        {
+            ["Core"] = [],
+            ["Data"] = ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
+            ["UI"] = ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj",
+                     "..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"]
+        }));
 
     [Fact]
     public void Deliberate_cycle_is_rejected()
-        => Assert.True(HasCycle(new Dictionary<string, string[]>
+        => Assert.False(IsValidGraph(new Dictionary<string, string[]>
         {
             ["Core"] = ["..\\PipelineOrchestrator.Data\\PipelineOrchestrator.Data.csproj"],
             ["Data"] = ["..\\PipelineOrchestrator.Core\\PipelineOrchestrator.Core.csproj"],
             ["UI"] = []
-        }));
+         }));
+
+    private static bool IsValidGraph(IReadOnlyDictionary<string, string[]> graph) =>
+        !graph["UI"].Any(reference => reference.Contains("PipelineOrchestrator.Data"))
+        && !graph["Core"].Any(reference => reference.Contains("PipelineOrchestrator.Data"))
+        && !graph["Data"].Any(reference => reference.Contains("PipelineOrchestrator.UI"))
+        && !HasCycle(graph);
 
     [Fact]
     public void Build_properties_are_deterministic_and_nullable()
