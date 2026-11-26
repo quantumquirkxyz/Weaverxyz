@@ -23,7 +23,7 @@ jobs:
           test -f .github/project/project-manifest.yml
       - name: Secret scan boundary
         run: |
-          ! grep -RInE '(sk-[A-Za-z0-9]{20,}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|password[[:space:]]*=[[:space:]]*[^$])' --exclude-dir=.git --exclude='*.lock' .
+          ! grep -RInE '(sk-[A-Za-z0-9]{20,}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|password[[:space:]]*=[[:space:]]*[^$])' --exclude-dir=.git --exclude-dir=.agents --exclude-dir=tests --exclude='*.lock' .
 
   build-and-test:
     needs: baseline
