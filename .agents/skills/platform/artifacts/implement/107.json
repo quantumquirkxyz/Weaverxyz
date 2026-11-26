@@ -10,8 +10,8 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-107-establish-contracts-test-fixtures",
-    "commitSha": "0fd85f6",
-    "previousCommitSha": "37592f2"
+    "commitSha": "f10c827",
+    "previousCommitSha": "0fd85f6"
   },
   "seam": "UI-to-Core composition boundary, Core repository contract fixtures, and static architecture negative fixtures.",
   "changedFiles": [
@@ -108,7 +108,7 @@
     "gateIDE": "pass",
     "gatePreCommit": "pass",
     "gateCI": "pass",
-    "reason": "Release build succeeded with 0 warnings and 0 errors; architecture, Core, and contract tests passed (12/12)."
+    "reason": "Release build succeeded with 0 warnings/errors; architecture, Core, and contract tests passed (14/14)."
   },
   "tests": {
     "run": [
@@ -145,7 +145,7 @@
   "independentVerifier": {
     "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
     "result": "completed",
-    "fixedPoint": "0fd85f6",
+    "fixedPoint": "f10c827",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
