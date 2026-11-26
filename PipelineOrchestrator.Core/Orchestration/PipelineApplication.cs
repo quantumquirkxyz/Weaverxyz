@@ -1,9 +1,11 @@
 using PipelineOrchestrator.Core.Contracts;
-using PipelineOrchestrator.Core.Data;
 
 namespace PipelineOrchestrator.Core.Orchestration;
 
 public sealed class PipelineApplication
 {
-    public IPipelineRepository Pipelines { get; } = new InMemoryPipelineRepository();
+    public PipelineApplication(IPipelineRepository pipelines)
+        => Pipelines = pipelines ?? throw new ArgumentNullException(nameof(pipelines));
+
+    public IPipelineRepository Pipelines { get; }
 }
