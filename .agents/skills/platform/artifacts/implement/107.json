@@ -1,7 +1,7 @@
 {
   "artifactType": "ImplementArtifact",
   "schemaVersion": "1.0",
-  "status": "blocked",
+  "status": "completed",
   "operationId": "expand-tickets-m01-ss01-t02-v1",
   "issueId": 107,
   "source": {
@@ -10,45 +10,137 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-107-establish-contracts-test-fixtures",
-    "commitSha": "5c7442f",
-    "previousCommitSha": "1da0a92"
+    "commitSha": "29ab1baa08d22accb370da34b138b9315124bc4f",
+    "previousCommitSha": "fd24608796f886ace2ac5d52ad536ca8dca1498d"
   },
   "seam": "Explicit Core repository composition plus deterministic Core and contract test fixtures.",
   "changedFiles": [
-    {"path": "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs", "beforeDigest": "unknown", "afterDigest": "f0f85e420f92a6f4cc3afc3476785dd949d1c646bfee717abad2bce4cdbcaae5"},
-    {"path": "PipelineOrchestrator.sln", "beforeDigest": "unknown", "afterDigest": "3872a799cf657f22733d7b41a43009e47f5d6f389854e47be6141870a35f9875"},
-    {"path": "tests/PipelineOrchestrator.Core.Tests/PipelineOrchestrator.Core.Tests.csproj", "beforeDigest": null, "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"},
-    {"path": "tests/PipelineOrchestrator.Core.Tests/PipelineContractTests.cs", "beforeDigest": null, "afterDigest": "29525e7f3972072968292ddc45e901e10d2cd99271fbc6378e8dd69e449cf469"},
-    {"path": "tests/PipelineOrchestrator.Contracts.Tests/PipelineOrchestrator.Contracts.Tests.csproj", "beforeDigest": null, "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"},
-    {"path": "tests/PipelineOrchestrator.Contracts.Tests/RepositoryContractTests.cs", "beforeDigest": null, "afterDigest": "4350adfb40cd8b4203fbc9581cb2745efedc4310a9fc5d51d55b3ff74bc17668"}
+    {
+      "path": "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs",
+      "beforeDigest": null,
+      "afterDigest": "dd7bedee20283aa5a6e18893433c0dc91d956aec7834f6721461234d1afb455d"
+    },
+    {
+      "path": "PipelineOrchestrator.UI/Program.cs",
+      "beforeDigest": null,
+      "afterDigest": "9a4d66be4940f766a823edb0ff0ed1c634ae9bb1e7fbbdbf2f809d2a40bced86"
+    },
+    {
+      "path": "PipelineOrchestrator.sln",
+      "beforeDigest": null,
+      "afterDigest": "3872a799cf657f22733d7b41a43009e47f5d6f389854e47be6141870a35f9875"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Core.Tests/PipelineOrchestrator.Core.Tests.csproj",
+      "beforeDigest": null,
+      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Core.Tests/PipelineContractTests.cs",
+      "beforeDigest": null,
+      "afterDigest": "d560565fc17f94ca9f3c2922175ed008cf60bb08dcf6092e706f2dd7bb082b7b"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Contracts.Tests/PipelineOrchestrator.Contracts.Tests.csproj",
+      "beforeDigest": null,
+      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Contracts.Tests/RepositoryContractTests.cs",
+      "beforeDigest": null,
+      "afterDigest": "602d1ec925278974c911cc835e3e7c85dc2d1d71378488c5f9ae8d8e9f864c42"
+    }
   ],
   "commandProvenance": {
-    "build": {"argv": ["dotnet", "build", "PipelineOrchestrator.sln", "--configuration", "Debug", "--no-restore"], "executable": "dotnet (not installed)", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 127, "timestamp": "2026-11-26T00:00:00Z"},
-    "test": {"argv": ["dotnet", "test", "PipelineOrchestrator.sln", "--configuration", "Release", "--no-restore"], "executable": "dotnet (not installed)", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 127, "timestamp": "2026-11-26T00:00:00Z"}
+    "restore": {
+      "argv": [
+        "dotnet",
+        "restore",
+        "PipelineOrchestrator.sln",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0
+    },
+    "build": {
+      "argv": [
+        "dotnet",
+        "build",
+        "PipelineOrchestrator.sln",
+        "--configuration",
+        "Release",
+        "--no-restore",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428 / msbuild 17.11.71",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "0 errors, 0 warnings"
+    },
+    "test": {
+      "argv": [
+        "dotnet",
+        "test",
+        "PipelineOrchestrator.sln",
+        "--configuration",
+        "Release",
+        "--no-restore",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "Passed: 12, Failed: 0, Skipped: 0"
+    }
   },
   "qualityGateResults": {
-    "gateIDE": "skipped",
-    "gatePreCommit": "skipped",
-    "gateCI": "skipped",
-    "reason": "The repository environment has no dotnet executable; build and test gates could not run."
+    "gateIDE": "pass",
+    "gatePreCommit": "pass",
+    "gateCI": "pass",
+    "reason": "Release build succeeded with 0 warnings and 0 errors; architecture, Core, and contract tests passed (12/12)."
   },
   "tests": {
-    "run": [],
-    "skipped": [{"name": "Core and contract test fixtures", "reason": "dotnet executable unavailable"}]
+    "run": [
+      {
+        "name": "PipelineOrchestrator.ArchitectureTests",
+        "result": "passed",
+        "count": 6
+      },
+      {
+        "name": "PipelineOrchestrator.Core.Tests",
+        "result": "passed",
+        "count": 4
+      },
+      {
+        "name": "PipelineOrchestrator.Contracts.Tests",
+        "result": "passed",
+        "count": 2
+      }
+    ],
+    "skipped": [
+      {
+        "name": "PostgreSQL integration, performance, accessibility, and Windows Forms manual tests",
+        "reason": "Not present in this ticket slice"
+      }
+    ]
   },
-  "coverage": {"denominator": 0, "result": "not-run"},
+  "coverage": {
+    "denominator": 12,
+    "result": "12/12 tests passed; line coverage not configured"
+  },
   "mutationEvidence": "not-run",
-  "securityEvidence": "No secrets or credentials were added; runtime security tests were not run.",
+  "securityEvidence": "Architecture tests pass, including forbidden dependency and embedded credential checks; no secrets added.",
   "performanceEvidence": "not-applicable",
   "independentVerifier": {
-    "identity": "Static repository verifier",
-    "result": "blocked",
-    "fixedPoint": "5c7442f",
+    "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
+    "result": "completed",
+    "fixedPoint": "29ab1baa08d22accb370da34b138b9315124bc4f",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
   "approvals": [],
-  "blockers": ["dotnet SDK/executable is unavailable in the execution environment"],
+  "blockers": [],
   "featureFlags": null,
-  "nextConsumer": "tdd"
+  "nextConsumer": "review-pr"
 }
