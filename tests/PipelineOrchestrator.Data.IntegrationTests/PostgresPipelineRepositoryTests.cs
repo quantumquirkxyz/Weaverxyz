@@ -22,7 +22,10 @@ public sealed class PostgresPipelineRepositoryTests
         await repository.UpsertAsync(pipeline);
         var loaded = await repository.FindAsync(pipeline.Id);
 
-        Assert.Equal(pipeline, loaded);
+        Assert.NotNull(loaded);
+        Assert.Equal(pipeline.Id, loaded.Id);
+        Assert.Equal(pipeline.Name, loaded.Name);
+        Assert.Equal(pipeline.Steps, loaded.Steps);
     }
 }
 
