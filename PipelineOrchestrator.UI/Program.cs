@@ -1,3 +1,4 @@
+using PipelineOrchestrator.Core.Contracts;
 using PipelineOrchestrator.Core.Orchestration;
 
 namespace PipelineOrchestrator.UI;
@@ -8,7 +9,8 @@ internal static class Program
     private static void Main()
     {
         ApplicationConfiguration.Initialize();
-        var application = new PipelineApplication();
+        IPipelineRepository pipelines = new PipelineOrchestrator.Core.Data.InMemoryPipelineRepository();
+        var application = new PipelineApplication(pipelines);
         Application.Run(new MainForm(application, initializeDesigner: true));
     }
 }

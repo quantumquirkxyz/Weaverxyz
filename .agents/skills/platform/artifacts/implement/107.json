@@ -1,0 +1,151 @@
+{
+  "artifactType": "ImplementArtifact",
+  "schemaVersion": "1.0",
+  "status": "completed",
+  "operationId": "expand-tickets-m01-ss01-t02-v1",
+  "issueId": 107,
+  "source": {
+    "reference": "https://github.com/quantumquirkxyz/Weaverxyz/issues/107",
+    "sourceDigest": "issue-107@2026-11-26"
+  },
+  "fixedPoint": {
+    "branch": "feat/issue-107-establish-contracts-test-fixtures",
+    "commitSha": "72eda144cbda9fc14780d2793e5a8849a1339f66",
+    "previousCommitSha": "3d00ee6"
+  },
+  "seam": "UI-to-Core composition boundary, Core repository contract fixtures, and static architecture negative fixtures.",
+  "changedFiles": [
+    {
+      "path": "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs",
+      "beforeDigest": "28d07bb2121b1f9fee3e5ae022e294c9f3e640fb887b6162cf7d4bff8f58a498",
+      "afterDigest": "f0f85e420f92a6f4cc3afc3476785dd949d1c646bfee717abad2bce4cdbcaae5"
+    },
+    {
+      "path": "PipelineOrchestrator.UI/Program.cs",
+      "beforeDigest": "7dbcf070048f27c61707d8762cc3b729314a0299e399129a6d3a75c218513ff2",
+      "afterDigest": "a000f2f3da71189b3444f88e2c3a61b159fdf163c7679c460783ce00e3a927c4"
+    },
+    {
+      "path": "PipelineOrchestrator.sln",
+      "beforeDigest": "bbeb51be83c949ad14e08830f04925e0df3b415eb7d721cef1b764e3ea2f315c",
+      "afterDigest": "3872a799cf657f22733d7b41a43009e47f5d6f389854e47be6141870a35f9875"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.ArchitectureTests/DependencyBoundaryTests.cs",
+      "beforeDigest": "7dd49448dbe06d9c8cde1adeeeb719d2396cd7bc67cf2c4a5da096f97db141ea",
+      "afterDigest": "0757386743e73f96bb882abc10d7762b972809c40ccee95ace66812b00d7ac48"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Contracts.Tests/PipelineOrchestrator.Contracts.Tests.csproj",
+      "beforeDigest": null,
+      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Contracts.Tests/RepositoryContractTests.cs",
+      "beforeDigest": null,
+      "afterDigest": "01cf98e1da7bd520a6e53380bfbb6188ef77c57e58672a1c397d1cb8a3ced21a"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Core.Tests/PipelineContractTests.cs",
+      "beforeDigest": null,
+      "afterDigest": "b1d06b97eec93b6386ef981c7c7846547d93cf584a7c6360c168355223f01495"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.Core.Tests/PipelineOrchestrator.Core.Tests.csproj",
+      "beforeDigest": null,
+      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+    }
+  ],
+  "commandProvenance": {
+    "restore": {
+      "argv": [
+        "dotnet",
+        "restore",
+        "PipelineOrchestrator.sln",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0
+    },
+    "build": {
+      "argv": [
+        "dotnet",
+        "build",
+        "PipelineOrchestrator.sln",
+        "--configuration",
+        "Release",
+        "--no-restore",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428 / msbuild 17.11.71",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "4f567114a427c23c8b0b7f8cdc1670681124777eabd93578ec84b0d4312036f3"
+    },
+    "test": {
+      "argv": [
+        "dotnet",
+        "test",
+        "PipelineOrchestrator.sln",
+        "--configuration",
+        "Release",
+        "--no-restore",
+        "--nologo"
+      ],
+      "executable": "dotnet 8.0.428",
+      "cwd": "/home/quantumquirkxyz/Weaverxyz",
+      "exitStatus": 0,
+      "outputDigest": "c3ea33ee82e7b75f086f1a5fa9023ac94685eb57619922e489cdadac9f4bc1f3"
+    }
+  },
+  "qualityGateResults": {
+    "gateIDE": "pass",
+    "gatePreCommit": "pass",
+    "gateCI": "pass",
+    "reason": "Release build succeeded with 0 warnings/errors; architecture, Core, and contract tests passed (14/14)."
+  },
+  "tests": {
+    "run": [
+      {
+        "name": "PipelineOrchestrator.ArchitectureTests",
+        "result": "passed",
+        "count": 8
+      },
+      {
+        "name": "PipelineOrchestrator.Core.Tests",
+        "result": "passed",
+        "count": 4
+      },
+      {
+        "name": "PipelineOrchestrator.Contracts.Tests",
+        "result": "passed",
+        "count": 2
+      }
+    ],
+    "skipped": [
+      {
+        "name": "PostgreSQL integration, performance, accessibility, and Windows Forms manual tests",
+        "reason": "Not present in this ticket slice"
+      }
+    ]
+  },
+  "coverage": {
+    "denominator": 14,
+    "result": "14/14 tests passed; line coverage not configured"
+  },
+  "mutationEvidence": "not-run",
+  "securityEvidence": "Architecture tests pass, including forbidden dependency and embedded credential checks; no secrets added.",
+  "performanceEvidence": "not-applicable",
+  "independentVerifier": {
+    "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
+    "result": "completed",
+    "fixedPoint": "72eda144cbda9fc14780d2793e5a8849a1339f66",
+    "sourceDigestsMatch": true,
+    "changedFileSetMatches": true
+  },
+  "approvals": [],
+  "blockers": [],
+  "featureFlags": null,
+  "nextConsumer": "review-pr"
+}
