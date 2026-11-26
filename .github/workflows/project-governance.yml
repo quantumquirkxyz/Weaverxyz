@@ -28,10 +28,10 @@ on:
         options: [dry-run, apply]
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-  repository-projects: write
+  contents: read
+  issues: read
+  pull-requests: read
+  repository-projects: read
   actions: read
 
 concurrency:
