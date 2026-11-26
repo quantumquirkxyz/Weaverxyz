@@ -1,0 +1,46 @@
+name: Weaverxyz Engineering Delivery
+scope: repository
+repository: quantumquirkxyz/Weaverxyz
+owner: quantumquirkxyz
+operationId: github-project-weaverxyz-v1
+sourceOfTruth:
+  planning: project-v2
+  evidence: issue-and-pull-request
+  routing: labels
+  architecture: adr
+  domain: CONTEXT.md
+fields:
+  Status: [Todo, Triage, Ready for Agent, Ready for Human, In Progress, Blocked, Review, QA, Ready for Merge, Done, Wont Fix, Duplicate]
+  Work Type: [Epic, Feature, Story, Task, Bug, Spike, Chore, Documentation, Refactor, Experiment, Incident]
+  Type: [Bug, Feature, Task, Epic, Story, Spike, Chore, Documentation, Refactor, Test, Security, Performance, Dependency, Incident, Question, Proposal, Experiment]
+  Priority: [Critical, High, Medium, Low, Backlog]
+  Risk: [Low, Medium, High, Critical]
+  Area: [UI, Core, Orchestrator, Data, Persistence, Agent, Security, Infrastructure, Documentation, QA, Cross-cutting]
+  Repo Scope: [PipelineOrchestrator.UI, PipelineOrchestrator.Core, PipelineOrchestrator.Data, Cross-cutting, Documentation]
+  Phase: [Discovery, Requirements, Architecture, Design, Implementation, Verification, Security Review, Release, Operations, Maintenance, Retired]
+  Effort: [S, M, L, XL]
+  QA State: [Not Required, Planned, In Progress, Passed, Failed, Waived]
+  Security State: [Not Assessed, Assessed, Mitigated, Accepted, Blocked]
+  Documentation State: [Not Required, Planned, In Progress, Complete, Stale]
+  Dependency State: [None, Ready, Blocked, Conflict]
+  Iteration: [Backlog, Sprint 1, Sprint 2, Sprint 3, Sprint 4]
+  Release Train: [MVP, Academic Demo, v1.0, Maintenance]
+  Start Date: date
+  Target Date: date
+  Completed Date: date
+views:
+  - {name: Intake and Triage, layout: board, groupBy: Status, filter: 'Status = Triage OR Status = Todo'}
+  - {name: Ready, layout: table, filter: 'Status = Ready for Agent OR Status = Ready for Human'}
+  - {name: Execution, layout: board, groupBy: Status, filter: 'Status = In Progress OR Status = Blocked'}
+  - {name: Review and QA, layout: board, groupBy: QA State, filter: 'Status = Review OR Status = QA OR Status = Ready for Merge'}
+  - {name: Roadmap, layout: roadmap, groupBy: Release Train, dateField: Target Date}
+  - {name: Release Readiness, layout: table, filter: 'Phase = Release'}
+  - {name: Security, layout: table, filter: 'Risk = High OR Risk = Critical OR Security State != Not Assessed'}
+  - {name: Documentation Debt, layout: table, filter: 'Documentation State = Stale'}
+  - {name: Completed, layout: table, filter: 'Status = Done'}
+reconciliation:
+  schedule: '0 */6 * * *'
+  manualApprovalForConfigurationMutation: true
+  failClosedOnConflict: true
+  auditOperationId: true
+  rollbackPlan: docs/runbooks/github-project-rollback.md

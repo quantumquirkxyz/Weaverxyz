@@ -1,5 +1,6 @@
 using PipelineOrchestrator.Core.Contracts;
 using PipelineOrchestrator.Core.Models;
+using PipelineOrchestrator.Data;
 using Xunit;
 
 namespace PipelineOrchestrator.Data.IntegrationTests;
@@ -9,7 +10,7 @@ public sealed class DataBoundaryTests
     [Fact]
     public async Task Core_pipeline_repository_contract_is_reachable()
     {
-        IPipelineRepository repository = new AlwaysEmptyRepository();
+        IPipelineRepository repository = new InMemoryPipelineRepository();
         Assert.Null(await repository.FindAsync(Guid.NewGuid()));
     }
 
@@ -25,9 +26,4 @@ public sealed class DataBoundaryTests
         Assert.Equal(["source", "sink"], pipeline.Steps.Select(step => step.Name));
     }
 
-    private sealed class AlwaysEmptyRepository : IPipelineRepository
-    {
-        public Task<PipelineDefinition?> FindAsync(Guid id, CancellationToken cancellationToken = default)
-            => Task.FromResult<PipelineDefinition?>(null);
-    }
 }

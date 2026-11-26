@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipelineOrchestrator.Contra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipelineOrchestrator.Data.IntegrationTests", "tests\PipelineOrchestrator.Data.IntegrationTests\PipelineOrchestrator.Data.IntegrationTests.csproj", "{F4A2B1C8-9D3E-4F7A-8C2B-1D3E4F5A6B7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipelineOrchestrator.UI.ManualTests", "tests\PipelineOrchestrator.UI.ManualTests\PipelineOrchestrator.UI.ManualTests.csproj", "{A6C8E2F4-7B1D-4F90-AB23-5D6E7F8A9B0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,5 +53,9 @@ Global
 		{F4A2B1C8-9D3E-4F7A-8C2B-1D3E4F5A6B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4A2B1C8-9D3E-4F7A-8C2B-1D3E4F5A6B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4A2B1C8-9D3E-4F7A-8C2B-1D3E4F5A6B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C8E2F4-7B1D-4F90-AB23-5D6E7F8A9B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C8E2F4-7B1D-4F90-AB23-5D6E7F8A9B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C8E2F4-7B1D-4F90-AB23-5D6E7F8A9B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C8E2F4-7B1D-4F90-AB23-5D6E7F8A9B0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

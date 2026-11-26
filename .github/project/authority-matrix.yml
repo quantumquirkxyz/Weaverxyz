@@ -1,0 +1,23 @@
+version: 1
+fields:
+  Status: {authority: derived, evidence: issue-pr-events, conflict: fail-closed}
+  Work Type: {authority: project-v2, evidence: issue-type, conflict: block}
+  Type: {authority: github-native-issue-type, compatibility: type-label, conflict: block}
+  Priority: {authority: project-v2, compatibility: priority-label, conflict: block}
+  Risk: {authority: project-v2, evidence: issue-risk-section, conflict: block}
+  Area: {authority: project-v2, compatibility: area-label, conflict: block}
+  Repo Scope: {authority: project-v2, evidence: changed-paths, conflict: block}
+  Phase: {authority: project-v2, conflict: block}
+  Effort: {authority: project-v2, compatibility: effort-label, conflict: block}
+  Owner: {authority: project-v2, evidence: assignee, conflict: block}
+  Reviewer: {authority: project-v2, evidence: pr-reviewers, conflict: block}
+  QA State: {authority: project-v2, evidence: checks, conflict: block}
+  Security State: {authority: project-v2, evidence: security-artifacts, conflict: block}
+  Documentation State: {authority: project-v2, evidence: documentation-diff, conflict: block}
+  Dependency State: {authority: derived, evidence: native-relationships, conflict: fail-closed}
+  Iteration: {authority: project-v2, compatibility: sprint-label, conflict: block}
+  Release Train: {authority: project-v2, compatibility: release-label, conflict: block}
+  Milestone: {authority: github-native-milestone, conflict: block}
+  Start Date: {authority: project-v2, evidence: first-in-progress-event, conflict: block}
+  Target Date: {authority: project-v2, compatibility: due-date, conflict: block}
+  Completed Date: {authority: derived, evidence: done-event, conflict: block}

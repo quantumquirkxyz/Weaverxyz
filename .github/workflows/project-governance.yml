@@ -1,0 +1,54 @@
+name: Project Governance
+
+on:
+  issues:
+    types: [opened, edited, closed, labeled, unlabeled, reopened]
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, edited, closed, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted, dismissed]
+  pull_request_review_comment:
+    types: [created, edited]
+  workflow_run:
+    workflows: [Quality Gates]
+    types: [completed]
+  release:
+    types: [published]
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Reconciliation mode
+        required: true
+        default: dry-run
+        type: choice
+        options: [dry-run, apply]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  repository-projects: write
+  actions: read
+
+concurrency:
+  group: project-governance
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest and governance contracts
+        run: |
+          test -f .github/project/project-manifest.yml
+          test -f docs/reference/agents/github-project.md
+          test -f docs/runbooks/github-project-rollback.md
+          grep -q 'failClosedOnConflict: true' .github/project/project-manifest.yml
+          grep -q 'manualApprovalForConfigurationMutation: true' .github/project/project-manifest.yml
+      - name: Record governance boundary
+        run: echo "Project mutation requires a separately approved idempotent reconciler."
