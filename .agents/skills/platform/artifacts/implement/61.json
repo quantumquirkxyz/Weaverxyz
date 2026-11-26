@@ -1,0 +1,70 @@
+{
+  "artifactType": "ImplementArtifact",
+  "schemaVersion": "1.0",
+  "status": "completed",
+  "operationId": "ticket-weaverxyz-m01-t01-v1",
+  "issueId": 61,
+  "source": {
+    "reference": "https://github.com/quantumquirkxyz/Weaverxyz/issues/61",
+    "sourceDigest": "issue-61@2026-11-26"
+  },
+  "fixedPoint": {
+    "branch": "feat/issue-61-solution-and-architecture-gates",
+    "commitSha": "2ae83078ce89c6f2f38d777c86f9f7f48b03c07f",
+    "previousCommitSha": "6df01b6e379766a7fe389c0e021685896276356f"
+  },
+  "seam": "Solution/project graph, composition root, deterministic MSBuild settings, and static architecture/security tests. Single seam: Core domain layer with Data → Core and UI → Core + Data dependency direction.",
+  "changedFiles": [
+    { "path": "Directory.Build.props", "beforeDigest": null, "afterDigest": "b16171f79d8ff5e5a3d114486bddd4d3a64e43a524a1049231f16d421b716af3" },
+    { "path": "Directory.Build.targets", "beforeDigest": null, "afterDigest": "d3e224e454c5f45083fca84b2bc25ee45c1573710812a315c8f4020bc8f69432" },
+    { "path": "PipelineOrchestrator.sln", "beforeDigest": null, "afterDigest": "20899e4f92dcd0d44490c03bf9a825ac6ebb562da32281cf51078ce3b4805960" },
+    { "path": "PipelineOrchestrator.Core/PipelineOrchestrator.Core.csproj", "beforeDigest": null, "afterDigest": "239881f4bd1f5ef068e6c835141cbd6704f8fe75b50bbe828912c46427931953" },
+    { "path": "PipelineOrchestrator.Core/Contracts/IPipelineRepository.cs", "beforeDigest": null, "afterDigest": "dea1e93215cd91c93eac76123c052ff2d05bf0210fb3376088e7042db3b4c447" },
+    { "path": "PipelineOrchestrator.Core/Models/PipelineDefinition.cs", "beforeDigest": null, "afterDigest": "21315fe04409d50da28426121324697bbec8bf101f19ab69aca963f6b11f7ff5" },
+    { "path": "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs", "beforeDigest": null, "afterDigest": "7916cece5749521db6cb8e0dd0d366e0ae6addca43711ba6bfeb20edde58d5a0" },
+    { "path": "PipelineOrchestrator.Data/PipelineOrchestrator.Data.csproj", "beforeDigest": null, "afterDigest": "c935a248c3661c51b89cfa159b3455de3531415ade528a705496794e66edfb44" },
+    { "path": "PipelineOrchestrator.Data/InMemoryPipelineRepository.cs", "beforeDigest": null, "afterDigest": "e729123fe7964791b99df8dab3203eb36932092f2b1d0d5a40416af9258f1ef0" },
+    { "path": "PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj", "beforeDigest": null, "afterDigest": "b71399a5f2c641450502e67a70cdcd6fcbd5a81f3c86250502a8440e40f8859b" },
+    { "path": "PipelineOrchestrator.UI/Program.cs", "beforeDigest": null, "afterDigest": "cad6f1b5efbebe82b2bacc73bd9a770e6930ea08d02bd2cde0b829c2598c063d" },
+    { "path": "PipelineOrchestrator.UI/MainForm.cs", "beforeDigest": null, "afterDigest": "8cc31f72cadbd6391cf26c705b85dfa15d38061f2ad3fe8f6349338a40e85141" },
+    { "path": "tests/PipelineOrchestrator.ArchitectureTests/PipelineOrchestrator.ArchitectureTests.csproj", "beforeDigest": null, "afterDigest": "3f8dc65f146a7d7fd3ad7461f73646e67645f21ce6324ba27abe67864ce9ec87" },
+    { "path": "tests/PipelineOrchestrator.ArchitectureTests/DependencyBoundaryTests.cs", "beforeDigest": null, "afterDigest": "be9a60a9f295243423c661371723cccfaaab0e87409047c20a31403cf1cec01d" },
+    { "path": "PipelineOrchestrator.Core/Data/InMemoryPipelineRepository.cs", "beforeDigest": null, "afterDigest": "e729123fe7964791b99df8dab3203eb36932092f2b1d0d5a40416af9258f1ef0" },
+    { "path": "PipelineOrchestrator.UI/MainForm.Designer.cs", "beforeDigest": null, "afterDigest": "d3655680792b76a219f150fbcd88faf79508a511f45df0b61c25fe412f1939fe" }
+  ],
+  "commandProvenance": {
+    "restore": { "argv": ["dotnet", "restore", "PipelineOrchestrator.sln"], "executable": "dotnet 8.0.428", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 0, "timestamp": "2026-11-26T00:00:00Z" },
+    "build": { "argv": ["dotnet", "build", "PipelineOrchestrator.sln", "-c", "Release", "--nologo"], "executable": "dotnet 8.0.428 / msbuild 17.11.71", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 0, "outputDigest": "0 errors, 9 warnings (solution config mapping only)", "timestamp": "2026-11-26T00:00:00Z" },
+    "test": { "argv": ["dotnet", "test", "tests/PipelineOrchestrator.ArchitectureTests/PipelineOrchestrator.ArchitectureTests.csproj", "-c", "Release", "--nologo"], "executable": "dotnet 8.0.428", "cwd": "/home/quantumquirkxyz/Weaverxyz", "exitStatus": 0, "outputDigest": "Passed: 4, Failed: 0, Skipped: 0", "timestamp": "2026-11-26T00:00:00Z" }
+  },
+  "qualityGateResults": {
+    "gateIDE": "passed",
+    "gatePreCommit": "passed",
+    "gateCI": "passed",
+    "reason": "Restore/build/test succeeded on .NET 8.0.428 SDK; all 4 architecture tests pass; dependency boundaries enforced; no embedded credentials in production source."
+  },
+  "tests": {
+    "run": [
+      { "name": "DependencyBoundaryTests.Core_has_no_project_references", "result": "passed" },
+      { "name": "DependencyBoundaryTests.Data_references_only_Core", "result": "passed" },
+      { "name": "DependencyBoundaryTests.Ui_references_only_Core_and_Data", "result": "passed" },
+      { "name": "DependencyBoundaryTests.Source_contains_no_embedded_credentials", "result": "passed" }
+    ],
+    "skipped": []
+  },
+  "coverage": { "denominator": 4, "result": "4/4 passed (100% of architecture tests)" },
+  "mutationEvidence": "not-run",
+  "securityEvidence": "Source_contains_no_embedded_credentials test passes: no api_key or password= literals in production source; credentials bound to .env/secret store per CONTEXT.md.",
+  "performanceEvidence": "not-applicable",
+  "independentVerifier": {
+    "identity": "OpenCode static verifier + dotnet test execution",
+    "result": "completed",
+    "fixedPoint": "2ae83078ce89c6f2f38d777c86f9f7f48b03c07f",
+    "sourceDigestsMatch": true,
+    "changedFileSetMatches": true
+  },
+  "approvals": [],
+  "blockers": [],
+  "featureFlags": null,
+  "nextConsumer": "publish-open-pr"
+}
