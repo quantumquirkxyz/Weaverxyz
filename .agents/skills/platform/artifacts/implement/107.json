@@ -10,45 +10,60 @@
   },
   "fixedPoint": {
     "branch": "feat/issue-107-establish-contracts-test-fixtures",
-    "commitSha": "29ab1baa08d22accb370da34b138b9315124bc4f",
-    "previousCommitSha": "fd24608796f886ace2ac5d52ad536ca8dca1498d"
+    "commitSha": "ed8f7ba",
+    "previousCommitSha": "75b8c4c"
   },
   "seam": "Explicit Core repository composition plus deterministic Core and contract test fixtures.",
   "changedFiles": [
     {
       "path": "PipelineOrchestrator.Core/Orchestration/PipelineApplication.cs",
-      "beforeDigest": null,
-      "afterDigest": "dd7bedee20283aa5a6e18893433c0dc91d956aec7834f6721461234d1afb455d"
+      "beforeDigest": "28d07bb2121b1f9fee3e5ae022e294c9f3e640fb887b6162cf7d4bff8f58a498",
+      "afterDigest": "f0f85e420f92a6f4cc3afc3476785dd949d1c646bfee717abad2bce4cdbcaae5"
     },
     {
       "path": "PipelineOrchestrator.UI/Program.cs",
+      "beforeDigest": "7dbcf070048f27c61707d8762cc3b729314a0299e399129a6d3a75c218513ff2",
+      "afterDigest": "5d255a266abe59b013301247e6991da7d9f8aadbf32b4dbad93c967550f0acf8"
+    },
+    {
+      "path": "PipelineOrchestrator.UI/PipelineOrchestrator.UI.csproj",
+      "beforeDigest": "e9e62f556cad3cf5d1abb5f6ccd2957a57f8355a0227d6adcf73ede056dafb1a",
+      "afterDigest": "39badc76a561bea90e4956dc8e35c3f3fbc0126ba17254a2fdfe1819ec1e2d84"
+    },
+    {
+      "path": "PipelineOrchestrator.Data/InMemoryPipelineRepository.cs",
       "beforeDigest": null,
-      "afterDigest": "9a4d66be4940f766a823edb0ff0ed1c634ae9bb1e7fbbdbf2f809d2a40bced86"
+      "afterDigest": "2a47d2ab01aa09551b3411d7db0e5bb13cc808d26f517f86111249c35b764a16"
     },
     {
       "path": "PipelineOrchestrator.sln",
-      "beforeDigest": null,
+      "beforeDigest": "bbeb51be83c949ad14e08830f04925e0df3b415eb7d721cef1b764e3ea2f315c",
       "afterDigest": "3872a799cf657f22733d7b41a43009e47f5d6f389854e47be6141870a35f9875"
+    },
+    {
+      "path": "tests/PipelineOrchestrator.ArchitectureTests/DependencyBoundaryTests.cs",
+      "beforeDigest": "7dd49448dbe06d9c8cde1adeeeb719d2396cd7bc67cf2c4a5da096f97db141ea",
+      "afterDigest": "4eec1a2289ac5fe2387993243b82703f60bcc4399ad0cce052f3fe602cafe78c"
     },
     {
       "path": "tests/PipelineOrchestrator.Core.Tests/PipelineOrchestrator.Core.Tests.csproj",
       "beforeDigest": null,
-      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+      "afterDigest": "b1e1f2b27b1b3caa9fbe5804ec22b910c1169e48faad55c5da135263220fa15c"
     },
     {
       "path": "tests/PipelineOrchestrator.Core.Tests/PipelineContractTests.cs",
       "beforeDigest": null,
-      "afterDigest": "d560565fc17f94ca9f3c2922175ed008cf60bb08dcf6092e706f2dd7bb082b7b"
+      "afterDigest": "305090f5c838c77d435a1f9c47ffde6d4849d501997781559451ef38f5f07f4e"
     },
     {
       "path": "tests/PipelineOrchestrator.Contracts.Tests/PipelineOrchestrator.Contracts.Tests.csproj",
       "beforeDigest": null,
-      "afterDigest": "07c0db47d8620710aba608bbeb85a0ad62b6c3a02f45a3d42e1e20845f2c412a"
+      "afterDigest": "b1e1f2b27b1b3caa9fbe5804ec22b910c1169e48faad55c5da135263220fa15c"
     },
     {
       "path": "tests/PipelineOrchestrator.Contracts.Tests/RepositoryContractTests.cs",
       "beforeDigest": null,
-      "afterDigest": "602d1ec925278974c911cc835e3e7c85dc2d1d71378488c5f9ae8d8e9f864c42"
+      "afterDigest": "4f1b25d18d810222372f1bcc4eb7d66a042c6c3cac24d3574e91f18dc954c6e4"
     }
   ],
   "commandProvenance": {
@@ -76,7 +91,7 @@
       "executable": "dotnet 8.0.428 / msbuild 17.11.71",
       "cwd": "/home/quantumquirkxyz/Weaverxyz",
       "exitStatus": 0,
-      "outputDigest": "0 errors, 0 warnings"
+      "outputDigest": "4f567114a427c23c8b0b7f8cdc1670681124777eabd93578ec84b0d4312036f3"
     },
     "test": {
       "argv": [
@@ -91,7 +106,7 @@
       "executable": "dotnet 8.0.428",
       "cwd": "/home/quantumquirkxyz/Weaverxyz",
       "exitStatus": 0,
-      "outputDigest": "Passed: 12, Failed: 0, Skipped: 0"
+      "outputDigest": "a0a196ad67592170ac0d571bd6961571065c20315ffe8b01d085cecfa6683b05"
     }
   },
   "qualityGateResults": {
@@ -135,7 +150,7 @@
   "independentVerifier": {
     "identity": "OpenCode static verifier + dotnet 8.0.428 execution",
     "result": "completed",
-    "fixedPoint": "29ab1baa08d22accb370da34b138b9315124bc4f",
+    "fixedPoint": "ed8f7ba",
     "sourceDigestsMatch": true,
     "changedFileSetMatches": true
   },
