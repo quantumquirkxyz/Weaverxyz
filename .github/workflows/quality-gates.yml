@@ -1,0 +1,70 @@
+name: Quality Gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate repository documentation
+        run: |
+          test -f CONTEXT.md
+          test -d docs/adr
+          test -f docs/reference/agents/github-project.md
+          test -f .github/project/project-manifest.yml
+      - name: Secret scan boundary
+        run: |
+          ! grep -RInE '(sk-[A-Za-z0-9]{20,}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|password[[:space:]]*=[[:space:]]*[^$])' --exclude-dir=.git --exclude-dir=.agents --exclude-dir=tests --exclude='*.lock' .
+
+  build-and-test:
+    needs: baseline
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: weaverxyz
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d weaverxyz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET SDK (matches global.json)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore
+        run: dotnet restore PipelineOrchestrator.sln
+      - name: Build (${{ matrix.configuration }})
+        run: dotnet build PipelineOrchestrator.sln --configuration ${{ matrix.configuration }} --nologo
+      - name: Test (${{ matrix.configuration }})
+        env:
+          WEAVERXYZ_POSTGRES_CONNECTION_STRING: Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=weaverxyz
+        run: |
+          dotnet test PipelineOrchestrator.sln \
+            --configuration ${{ matrix.configuration }} \
+            --no-build \
+            --nologo \
+            --logger trx \
+            --results-directory ./test-results/${{ matrix.configuration }}
+      - name: Publish test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.configuration }}
+          path: ./test-results/${{ matrix.configuration }}/*.trx
