@@ -35,6 +35,7 @@ public sealed class DependencyBoundaryTests
         Assert.DoesNotContain(references["UI"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.DoesNotContain(references["Core"], reference => reference.Contains("PipelineOrchestrator.Data"));
         Assert.DoesNotContain(references["Data"], reference => reference.Contains("PipelineOrchestrator.UI"));
+        Assert.False(HasCycle(references));
     }
 
     [Fact]
@@ -62,4 +63,30 @@ public sealed class DependencyBoundaryTests
             .Descendants("ProjectReference")
             .Select(element => (string?)element.Attribute("Include") ?? string.Empty)
             .ToArray();
+
+    private static bool HasCycle(IReadOnlyDictionary<string, string[]> graph)
+    {
+        var visiting = new HashSet<string>();
+        var visited = new HashSet<string>();
+
+        bool Visit(string project)
+        {
+            if (!graph.ContainsKey(project))
+                return false;
+            if (!visiting.Add(project))
+                return true;
+            if (graph[project].Any(reference => Visit(ProjectName(reference))))
+                return true;
+            visiting.Remove(project);
+            visited.Add(project);
+            return false;
+        }
+
+        return graph.Keys.Any(project => !visited.Contains(project) && Visit(project));
+    }
+
+    private static string ProjectName(string reference) =>
+        reference.Contains("PipelineOrchestrator.Core", StringComparison.Ordinal) ? "Core" :
+        reference.Contains("PipelineOrchestrator.Data", StringComparison.Ordinal) ? "Data" :
+        reference.Contains("PipelineOrchestrator.UI", StringComparison.Ordinal) ? "UI" : reference;
 }
